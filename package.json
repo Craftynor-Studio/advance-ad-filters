@@ -1,0 +1,10 @@
+{
+  "name": "advance-ad-filters",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ad filters and readable page scripts for sites that serve ads inside their content responses.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": { "test": "node --test" },
+  "engines": { "node": ">=20" }
+}

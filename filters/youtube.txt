@@ -1,0 +1,20 @@
+! Title: Advance Ad Filters: YouTube
+! Description: Removes ad data from YouTube player responses before the player reads them.
+! Homepage: https://github.com/Craftynor-Studio/advance-ad-filters
+! License: MIT
+! Expires: 1 day
+!
+! Scriptlet syntax as used by uBlock Origin. Requires an engine that supports the
+! set-constant and json-prune scriptlets.
+
+! Ads embedded in the first page load
+youtube.com##+js(set-constant, ytInitialPlayerResponse.playerAds, undefined)
+youtube.com##+js(set-constant, ytInitialPlayerResponse.adPlacements, undefined)
+youtube.com##+js(set-constant, ytInitialPlayerResponse.adSlots, undefined)
+
+! Server-inserted ads in the first page load
+youtube.com##+js(set-constant, ytInitialPlayerResponse.playerConfig.ssapConfig, undefined)
+
+! Ads in player responses loaded later (navigation inside the site)
+youtube.com##+js(json-prune, playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots important)
+youtube.com##+js(json-prune, playerResponse.playerConfig.ssapConfig playerConfig.ssapConfig)
